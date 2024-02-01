@@ -1,0 +1,33 @@
+<!-- anomalies_result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anomalies Result</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+    <h2>Anomalies Result</h2>
+
+    {% if detected_value %}
+        <p>Detected anomalies for {{ selected_date }}:</p>
+        
+        <ul>
+            {% for anomaly in detected_value %}
+                <li>{{ anomaly.0 }} - Value: {{ anomaly.1 }}</li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>No anomalies detected for the specified date.</p>
+        <p>Debugging: {{ selected_date }}</p>
+
+    {% endif %}
+</body>
+</html>
+
+
+
+
+
+

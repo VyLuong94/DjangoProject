@@ -1,0 +1,36 @@
+<!-- mysite/templates/detect_anomalies.html -->
+<!-- Add additional CSS in static file -->
+<!-- detect_anomalies.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect Anomalies</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Detect Anomalies</h2>
+        <form method="post" action="{% url 'detect_anomalies' %}">
+            {% csrf_token %}
+            {{ form }}
+            <!-- Display the retrieved rows -->
+            {% if detected_value %}
+                <h3>Detected Values</h3>
+                <ul>
+                    {% for timestamp, value in detected_value %}
+                        <li>{{ timestamp }} - Value: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <button type="submit">Detect Anomalies</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
